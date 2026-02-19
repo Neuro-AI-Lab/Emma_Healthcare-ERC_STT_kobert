@@ -67,6 +67,8 @@
 ### Step 1: 필요한 라이브러리 설치
 - 현재 본 모델은 `Python 3.8`을 사용하고 있습니다.
 - 사전에 필요한 라이브러리는 `requirements.txt`에 저장해 두었습니다.
+- 최종 학습 모델 가중치가 필요합니다. 아래의 구글드라이브 Zip파일을 해제하여 Result 폴더에 넣어주세요.
+- https://drive.google.com/file/d/1IJ0sZnrBkjMpm_FbTu7un4X3WYjCyAgd/view?usp=drive_link
 ```bash
 pip install -r requirements.txt
 ```
