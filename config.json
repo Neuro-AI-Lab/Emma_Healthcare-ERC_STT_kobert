@@ -1,0 +1,25 @@
+{
+  "emotion_map": {
+    "happy": 0,
+    "neutral": 1,
+    "fearful": 2,
+    "disgust": 3,
+    "surprise": 4,
+    "sad": 5,
+    "angry": 6},
+
+  "bert_model": "monologg/kobert",
+  "fine_tuning_weight": "./Result/kobert_fine_tuning_final/",
+  "final_weight": "",
+  "stt_whisper_model": "medium",
+  "fine_tuning_data_path": "./Dataset/AI_HUB/",
+  "test_data_path": "./Dataset/test_dataset/",
+  "save_data_path": "./Dataset/preprocess_data/",
+
+  "seed": 2025,
+  "max_length": 256,
+  "batch_size": 4,
+  "learning_rate": 2e-5,
+  "epochs": 50,
+  "fold": 5
+}
