@@ -251,7 +251,7 @@ def predict_result_without_stt(text, config):
 
     model, tokenizer = set_model(config['bert_model'],final_model_path )
     model.eval()
-    token = preprocess_fn(text, tokenizer, config['max_length'])
+    token = preprocess_fn(str(text), tokenizer, config['max_length'])
 
     with torch.no_grad():
         outputs = model(**token)
