@@ -241,7 +241,7 @@ def predict_result(audio_path, config):
     return result_emotion, logits
 
 def predict_result_without_stt(text, config):
-
+    print(type(text))
     final_model_path = os.path.join("Result/kobert_final_weight")
 
     if not os.path.exists(final_model_path):
@@ -262,7 +262,6 @@ def predict_result_without_stt(text, config):
     # config.json의 emotion_map을 역순으로 탐색하여 감정 이름을 가져옵니다.
     id_to_emotion = {v: k for k, v in config['emotion_map'].items()}
     result_emotion = id_to_emotion.get(prediction, "Unknown")
-
     print(f"\n# ====== 예측 결과 ====== #")
     print(f"문장: {str(text)}")
     print(f"예측 감정: {result_emotion} (ID: {prediction})")
