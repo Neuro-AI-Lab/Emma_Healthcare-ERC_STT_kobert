@@ -264,7 +264,7 @@ def predict_result_without_stt(text, config):
     result_emotion = id_to_emotion.get(prediction, "Unknown")
 
     print(f"\n# ====== 예측 결과 ====== #")
-    print(f"문장: {text}")
+    print(f"문장: {str(text)}")
     print(f"예측 감정: {result_emotion} (ID: {prediction})")
     print(f"========================== #")
 
