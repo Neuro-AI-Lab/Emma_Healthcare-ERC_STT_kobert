@@ -82,7 +82,7 @@ def main():
         return result, logits
 
     if args.predict_without_stt:
-        result, logits = predict_result_without_stt(args.predict, config)
+        result, logits = predict_result_without_stt(args.predict_without_stt, config)
         return result, logits
 
 if __name__ == '__main__':
