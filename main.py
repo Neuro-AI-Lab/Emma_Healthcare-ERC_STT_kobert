@@ -4,7 +4,7 @@ import random
 import numpy as np
 import os
 import json
-from src.train import set_model, fine_tuning, target_evaluation, predict_result
+from src.train import set_model, fine_tuning, target_evaluation, predict_result, predict_result_without_stt
 from src.create_dataset import create_ai_hub_fine_tuning_data, create_test_data
 
 def set_seed(seed=2025):
@@ -37,6 +37,7 @@ def main():
     parser.add_argument('--fine_tuning', action='store_true', help='파인튜닝 학습 시작')
     parser.add_argument('--target_evaluation', action='store_true', help='타겟 평가(K-Fold) 시작')
     parser.add_argument('--predict', type=str, help='예측용 오디오 파일 경로 입력')
+    parser.add_argument('--predict_without_stt', type=str, help='예측용 텍스트 입력')
     args = parser.parse_args()
 
     # 설정값 로드
@@ -77,8 +78,12 @@ def main():
             target_evaluation(tokenizer, config)
 
     if args.predict:
-        result = predict_result(args.predict, config)
-        return result
+        result, logits = predict_result(args.predict, config)
+        return result, logits
+
+    if args.predict_without_stt:
+        result, logits = predict_result_without_stt(args.predict, config)
+        return result, logits
 
 if __name__ == '__main__':
-    predict_result_val = main()
+    predict_result_val, logits = main()

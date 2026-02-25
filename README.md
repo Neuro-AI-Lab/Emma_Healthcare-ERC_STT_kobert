@@ -38,16 +38,17 @@
 
 `main.py`는 명령행 인자를 통해 전처리, 학습, 평가를 제어합니다.
 
-| Argument                    | Type | Default | 상세 기능 설명 |
-|:----------------------------| :--- | :--- | :--- |
-| `--set_config`              | `str` | `config.json` | 설정(경로, 시드, 파라미터) 파일 지정 |
-| `--create_fine_tuning_data` | `flag` | - | AI HUB 데이터를 전이 학습용 TSV로 전처리 |
-| `--create_test_data`        | `flag` | - | 테스트 음성 파일을 Whisper로 전사하여 데이터셋 구축 |
-| `--set_bert_model`          | `flag` | - | KoBERT 모델 및 토크나이저 초기화 |
-| `--set_fine_tuning_weight`  | `flag` | - | 1차 학습 가중치(`fine_tuning_weight`) 로드 활성화 |
+| Argument                    | Type | Default | 상세 기능 설명                                   |
+|:----------------------------| :--- | :--- |:-------------------------------------------|
+| `--set_config`              | `str` | `config.json` | 설정(경로, 시드, 파라미터) 파일 지정                     |
+| `--create_fine_tuning_data` | `flag` | - | AI HUB 데이터를 전이 학습용 TSV로 전처리                |
+| `--create_test_data`        | `flag` | - | 테스트 음성 파일을 Whisper로 전사하여 데이터셋 구축           |
+| `--set_bert_model`          | `flag` | - | KoBERT 모델 및 토크나이저 초기화                      |
+| `--set_fine_tuning_weight`  | `flag` | - | 1차 학습 가중치(`fine_tuning_weight`) 로드 활성화     |
 | `--fine_tuning`             | `flag` | - | **[Base Tuning]** AI HUB 데이터를 이용한 전이 학습 수행 |
-| `--target_evaluation`       | `flag` | - | **[Target Tuning]** K-Fold 검증 및 최적 모델 추출 |
-| `--predict`                 | `str` | - | 특정 `.wav` 파일의 감정 상태를 즉시 예측 |
+| `--target_evaluation`       | `flag` | - | **[Target Tuning]** K-Fold 검증 및 최적 모델 추출   |
+| `--predict`                 | `str` | - | 특정 `.wav` 파일의 감정 상태를 즉시 예측                 |
+| `--predict_no_str`          | `str` | - | 특정 텍스트 str의 감정 상태를 즉시 예측                   |
 
 ## 4. 학습 알고리즘 및 최적 모델 저장 (src/train.py)
 
@@ -87,6 +88,12 @@ python main.py --create_test_data --set_bert_model --set_fine_tuning_weight --ta
 
 ### Step 3: 실시간 감정 예측
 - 학습된 모델을 사용하여 특정 음성 데이터의 감정을 즉시 분석합니다.
+
+**음성**
+```bash
+python main.py --predict "음성 데이터 경로"
+```
+**텍스트**
 ```bash
 python main.py --predict "음성 데이터 경로"
 ```

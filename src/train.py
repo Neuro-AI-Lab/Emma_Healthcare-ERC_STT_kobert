@@ -238,4 +238,34 @@ def predict_result(audio_path, config):
     print(f"예측 감정: {result_emotion} (ID: {prediction})")
     print(f"========================== #")
 
-    return result_emotion
+    return result_emotion, logits
+
+def predict_result_without_stt(text, config):
+
+    final_model_path = os.path.join("Result/kobert_final_weight")
+
+    if not os.path.exists(final_model_path):
+        print(f"최종 모델을 찾을 수 없습니다: {final_model_path}")
+        print("Target Evaluation를 먼저 완료하여 모델을 저장해주세요.")
+        return
+
+    model, tokenizer = set_model(config['bert_model'],final_model_path )
+    model.eval()
+    token = preprocess_fn(text, tokenizer, config['max_length'])
+
+    with torch.no_grad():
+        outputs = model(**token)
+        logits = outputs.logits
+        prediction = torch.argmax(logits, dim=-1).item()
+
+    # 4. 결과 출력 (ID를 감정 텍스트로 변환)
+    # config.json의 emotion_map을 역순으로 탐색하여 감정 이름을 가져옵니다.
+    id_to_emotion = {v: k for k, v in config['emotion_map'].items()}
+    result_emotion = id_to_emotion.get(prediction, "Unknown")
+
+    print(f"\n# ====== 예측 결과 ====== #")
+    print(f"문장: {text}")
+    print(f"예측 감정: {result_emotion} (ID: {prediction})")
+    print(f"========================== #")
+
+    return result_emotion, logits
