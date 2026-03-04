@@ -48,7 +48,7 @@
 | `--fine_tuning`             | `flag` | - | **[Base Tuning]** AI HUB 데이터를 이용한 전이 학습 수행 |
 | `--target_evaluation`       | `flag` | - | **[Target Tuning]** K-Fold 검증 및 최적 모델 추출   |
 | `--predict`                 | `str` | - | 특정 `.wav` 파일의 감정 상태를 즉시 예측                 |
-| `--predict_no_str`          | `str` | - | 특정 텍스트 str의 감정 상태를 즉시 예측                   |
+| `--predict_without_stt`          | `str` | - | 특정 텍스트 str의 감정 상태를 즉시 예측                   |
 
 ## 4. 학습 알고리즘 및 최적 모델 저장 (src/train.py)
 
@@ -95,7 +95,7 @@ python main.py --predict "음성 데이터 경로"
 ```
 **텍스트**
 ```bash
-python main.py --predict "음성 데이터 경로"
+python main.py --predict_without_stt "음성 데이터 경로"
 ```
 ## 6. 결과 산출물 (Results)
 - 최적 가중치: ./Result/kobert_final_weight/ (Best Fold Model)
